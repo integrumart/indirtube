@@ -17,11 +17,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         lib_path = os.path.join(addon_dir, "lib")
         ytdlp_exe = os.path.join(lib_path, "yt-dlp.exe")
         
-        # İndirilenler klasörü hedefi
+        # İndirilecek yer: İndirilenler klasörü
         download_path = os.path.join(os.path.expandvars("%USERPROFILE%"), "Downloads")
         output_template = os.path.join(download_path, "%(title)s.%(ext)s")
         
-        # Ana komut yapısı
+        # Orijinal komut yapısı
         cmd = [ytdlp_exe, "-o", output_template, "--no-mtime", "--ffmpeg-location", lib_path, url]
         
         if format_type == "mp3":
@@ -53,8 +53,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             return
 
         def show_dialog():
-            # MP3/MP4 yanına Bağış butonu eklendi
-            choices = ["MP3 (Ses / Audio)", "MP4 (Video)", "Bağış Yap / Donate (Support Developer)"]
+            # Format seçimine Bağış Linki eklendi
+            choices = [
+                "MP3 (Ses / Audio)", 
+                "MP4 (Video)", 
+                "Bağış Yap / Donate (Support Developer)"
+            ]
+            
             dlg = wx.SingleChoiceDialog(
                 gui.mainFrame, 
                 "Format seçiniz / Select format:", 
@@ -71,10 +76,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                     ui.message("İşlem başlatıldı, lütfen bekleyin... / Starting, please wait...")
                     threading.Thread(target=self.run_download, args=(url, "mp4"), daemon=True).start()
                 elif choice == 2:
+                    # İşte beklenen bağış linki yönlendirmesi
                     webbrowser.open("https://www.paytr.com/link/N2IAQKm")
             dlg.Destroy()
 
         wx.CallAfter(show_dialog)
 
-    # Orijinal kısayolun: NVDA + Shift + 1
+    # Senin orijinal kısayolun: NVDA + Shift + 1
     __gestures={"kb:nvda+shift+1": "indirTubeStart"}
