@@ -6,71 +6,75 @@ import wx
 import ui
 import api
 import globalPluginHandler
+import webbrowser
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+    scriptCategory = "İndirTube v3.0"
 
     def run_download(self, url, format_type):
-        # Dosya yollarını ayarla
+        # Orijinal dosya yolları ve kütüphane mantığı
         addon_dir = os.path.dirname(os.path.dirname(__file__))
         lib_path = os.path.join(addon_dir, "lib")
         ytdlp_exe = os.path.join(lib_path, "yt-dlp.exe")
-        ffmpeg_exe = os.path.join(lib_path, "ffmpeg.exe")
         
-        # İndirilecek yer: İndirilenler klasörü
+        # İndirilenler klasörü hedefi
         download_path = os.path.join(os.path.expandvars("%USERPROFILE%"), "Downloads")
         output_template = os.path.join(download_path, "%(title)s.%(ext)s")
         
-        # Ana komut
+        # Ana komut yapısı
         cmd = [ytdlp_exe, "-o", output_template, "--no-mtime", "--ffmpeg-location", lib_path, url]
         
-        # Formata göre ek parametreler
         if format_type == "mp3":
             cmd.extend(["--extract-audio", "--audio-format", "mp3"])
         else:
             cmd.extend(["-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"])
 
         try:
-            # Siyah pencereyi göstererek işlemi başlat (0x00000010 pencereyi odağa alır)
+            # Siyah pencereyi odaklayan orijinal creationflags
             process = subprocess.Popen(cmd, creationflags=0x00000010)
             process.wait()
             
             if process.returncode == 0:
-                wx.CallAfter(ui.message, "IndirTube: İndirme başarıyla tamamlandı!")
+                wx.CallAfter(ui.message, "IndirTube: İndirme başarıyla tamamlandı! / Download completed!")
             else:
-                wx.CallAfter(ui.message, "IndirTube: İndirme sırasında bir sorun oluştu.")
+                wx.CallAfter(ui.message, "IndirTube: İndirme sırasında bir sorun oluştu. / Download error.")
         except Exception as e:
-            wx.CallAfter(ui.message, "IndirTube: Sistem hatası.")
+            wx.CallAfter(ui.message, "IndirTube: Sistem hatası. / System error.")
 
     def script_indirTubeStart(self, gesture):
-        # Panodaki linki al
         try:
             url = api.getClipData().strip()
         except:
-            ui.message("Pano okunamadı.")
+            ui.message("Pano okunamadı. / Clipboard error.")
             return
 
         if "youtu" not in url.lower():
-            ui.message("Lütfen geçerli bir YouTube linki kopyalayın.")
+            ui.message("Lütfen geçerli bir YouTube linki kopyalayın. / Please copy a valid YouTube link.")
             return
 
-        # Format seçme diyaloğu
         def show_dialog():
+            # MP3/MP4 yanına Bağış butonu eklendi
+            choices = ["MP3 (Ses / Audio)", "MP4 (Video)", "Bağış Yap / Donate (Support Developer)"]
             dlg = wx.SingleChoiceDialog(
                 gui.mainFrame, 
-                f"Video bulundu. Hangi formatta indirilsin?", 
-                "IndirTube - Volkan Özdemir", 
-                ["MP3 (Ses)", "MP4 (Video)"]
+                "Format seçiniz / Select format:", 
+                "İndirTube v3.0 - Volkan Özdemir Yazılım", 
+                choices
             )
             
             if dlg.ShowModal() == wx.ID_OK:
                 choice = dlg.GetSelection()
-                fmt = "mp3" if choice == 0 else "mp4"
-                ui.message("İşlem başlatıldı, lütfen bekleyin...")
-                # İndirmeyi arka planda başlat (NVDA donmasın diye)
-                threading.Thread(target=self.run_download, args=(url, fmt), daemon=True).start()
+                if choice == 0:
+                    ui.message("İşlem başlatıldı, lütfen bekleyin... / Starting, please wait...")
+                    threading.Thread(target=self.run_download, args=(url, "mp3"), daemon=True).start()
+                elif choice == 1:
+                    ui.message("İşlem başlatıldı, lütfen bekleyin... / Starting, please wait...")
+                    threading.Thread(target=self.run_download, args=(url, "mp4"), daemon=True).start()
+                elif choice == 2:
+                    webbrowser.open("https://www.paytr.com/link/N2IAQKm")
             dlg.Destroy()
 
         wx.CallAfter(show_dialog)
 
-    # Kısayol Tuşu: NVDA + Shift + 1
+    # Orijinal kısayolun: NVDA + Shift + 1
     __gestures={"kb:nvda+shift+1": "indirTubeStart"}

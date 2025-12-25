@@ -1,12 +1,10 @@
-# 🚀 IndirTube (NVDA YouTube Downloader)
+# İndirTube v3.0
+**Developer:** Volkan Özdemir Yazılım Hizmetleri
+**Website:** [volkan-ozdemir.com.tr](https://www.volkan-ozdemir.com.tr)
 
-# YouTube videolarını tek bir kısayol tuşuyla, hiçbir ek program kurulumuyla uğraşmadan MP3 veya MP4 formatında indirmenizi sağlayan devrim niteliğinde bir NVDA eklentisidir.indirtube
+Professional YouTube downloader for NVDA users. Supports background downloading using yt-dlp.
 
-indir tube, görme engellilerin nvda ekran okuyucusunu kullanarak youtube üzerinden .mp3, .mp4 uzantılı dosya indirmelerini sağlar.
-
-Volkan Özdemir Yazılım Hizmetleri, Gururla Sunar.
-
-05326225322
-
-05338966411
-
+## Usage
+1. Copy a YouTube URL.
+2. Press `NVDA+Shift+1`.
+3. Select format (MP3/MP4) or support the developer by choosing "Donate".
