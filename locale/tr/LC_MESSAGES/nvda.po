@@ -1,0 +1,32 @@
+msgid "indirTube: Download completed successfully!"
+msgstr "indirTube: İndirme başarıyla tamamlandı!"
+
+msgid "indirTube: An error occurred during download."
+msgstr "indirTube: İndirme sırasında bir sorun oluştu."
+
+msgid "indirTube: System error."
+msgstr "indirTube: Sistem hatası."
+
+msgid "Clipboard could not be read."
+msgstr "Pano okunamadı."
+
+msgid "Please copy a valid YouTube link."
+msgstr "Lütfen geçerli bir YouTube linki kopyalayın."
+
+msgid "MP3 (Audio)"
+msgstr "MP3 (Ses)"
+
+msgid "MP4 (Video)"
+msgstr "MP4 (Video)"
+
+msgid "Donate (Support Developer)"
+msgstr "Bağış Yap (Geliştiriciyi Destekle)"
+
+msgid "Select format:"
+msgstr "Format seçiniz:"
+
+msgid "indirTube v2.0 - Volkan Ozdemir"
+msgstr "indirTube v2.0 - Volkan Özdemir"
+
+msgid "Starting, please wait..."
+msgstr "İşlem başlatıldı, lütfen bekleyin..."
