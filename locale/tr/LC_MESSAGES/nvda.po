@@ -1,3 +1,24 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: indirTube 5.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Volkan Ozdemir Software Services <bilgi@volkan-ozdemir.com.tr>\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. Summary of the add-on in manifest.ini
+msgid "indirTube: High Speed Video and Audio Downloader"
+msgstr "indirTube: Yüksek Hızlı Video ve Ses İndirici"
+
+#. Description of the add-on in manifest.ini
+msgid "Professional tool that allows you to download YouTube videos as MP3 or MP4 quickly by assigning a custom shortcut."
+msgstr "Özel bir kısayol atayarak YouTube videolarını MP3 veya MP4 olarak hızlıca indirmenizi sağlayan profesyonel araç."
+
 msgid "indirTube: Download completed successfully!"
 msgstr "indirTube: İndirme başarıyla tamamlandı!"
 
@@ -25,8 +46,11 @@ msgstr "Bağış Yap (Geliştiriciyi Destekle)"
 msgid "Select format:"
 msgstr "Format seçiniz:"
 
-msgid "indirTube v2.0 - Volkan Ozdemir"
-msgstr "indirTube v2.0 - Volkan Özdemir"
+msgid "indirTube v5.0 - Volkan Ozdemir Software Services"
+msgstr "indirTube v5.0 - Volkan Özdemir Yazılım Hizmetleri"
 
 msgid "Starting, please wait..."
 msgstr "İşlem başlatıldı, lütfen bekleyin..."
+
+msgid "Starts indirTube download dialog"
+msgstr "indirTube indirme diyaloğunu başlatır"

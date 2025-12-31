@@ -1,6 +1,0 @@
-# İndirTube translation file
-msgid "İndirTube: High Speed Audio/Video Downloader"
-msgstr "İndirTube v3.0: Yüksek Hızlı Ses/Video İndirici"
-
-msgid "Professional YouTube downloader that allows you to download videos as MP3 or MP4 with a single shortcut (NVDA+Shift+1)."
-msgstr "YouTube videolarını tek kısayolla (NVDA+Shift+1) MP3 veya MP4 olarak indirmenizi sağlayan profesyonel eklenti."
